@@ -1,0 +1,870 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700,700italic,900,900italic&subset=latin,latin-ext,cyrillic,cyrillic-ext,greek-ext,greek,vietnamese);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext,cyrillic-ext,cyrillic,greek-ext,greek,vietnamese);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&subset=latin,latin-ext,greek-ext,greek,vietnamese,cyrillic,cyrillic-ext);
+// Media queries
+$small-screen-up: 601px !default;
+$medium-screen-up: 993px !default;
+$large-screen-up: 1201px !default;
+$small-screen: 600px !default;
+$medium-screen: 992px !default;
+$large-screen: 1200px !default;
+$medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
+$large-and-up: "only screen and (min-width : #{$medium-screen-up})" !default;
+$small-and-down: "only screen and (max-width : #{$small-screen})" !default;
+$small-and-up: "only screen and (min-width : #{$small-screen})" !default;
+$medium-and-down: "only screen and (max-width : #{$medium-screen})" !default;
+$medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width : #{$medium-screen})" !default;
+$default-color: rgba(0, 0, 0, 0.85);
+$primary-color: #7986cb;
+$error-color: rgb(219, 68, 55);
+$positive-color: rgb(0, 150, 136);
+@mixin tr($value) {
+  transition: all $value linear;
+}
+
+@mixin tablet {
+  @media #{$medium-and-up} {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media #{$large-and-up} {
+    @content;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+  font-weight: normal;
+  line-height: 1.3;
+  color: $default-color;
+  height: 100%;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  background-color: #af9e92;
+  background-image: url(../images/pm_auth_background.jpg);
+  background-size: cover;
+  background-position: center;
+  &.onlineBackground {
+    background-image: url(../images/pm_auth_background.jpg);
+  }
+}
+
+.text-center {
+  display: block;
+  text-align: center;
+}
+
+.sublimeText {
+  color: rgba(black, 0.65);
+}
+
+.failContent {
+  position: fixed;
+  width: 100%;
+  height: auto;
+  z-index: 9999999999;
+  .fail {
+    padding: 10px 18px;
+    background-color: #d95d5d;
+    text-align: center;
+    width: 450px;
+    margin: auto;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 0 0 8px 8px;
+    box-shadow: inset 0 -20px 7px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.successContent {
+  position: fixed;
+  width: 100%;
+  height: auto;
+  z-index: 9999999999;
+  .success {
+    /*padding: 6px;
+    background-color: mediumseagreen;
+    text-align: center;
+    width: 450px;
+    margin: auto;
+    font-size: 15px;
+    text-shadow: 0px 0.5px 0px rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border-radius: 0 0 8px 8px;*/
+    //box-shadow: inset 0 -20px 7px rgba(0, 0, 0, 0.05);
+    padding: 10px 15px;
+    background-color: rgba(19, 181, 89, 0.9);
+    text-align: center;
+    width: 350px;
+    /* margin: auto; */
+    margin: 5px;
+    font-size: 15px;
+    text-shadow: 0px 0.5px 0px rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
+  }
+}
+
+.authField {
+  border: 1px #292929 solid;
+  border-radius: 5px;
+  padding: 8px 4px;
+  width: 100%;
+  margin-bottom: 6px;
+  background-color: rgba(black, 0.3);
+  color: rgba(white, 0.8) !important;
+  @include tr(.2s);
+  option {
+    color: #292929;
+  }
+  &:hover, &:focus {
+    outline: 0;
+    background-color: rgba(black, 0.1);
+  }
+}
+
+.three-authFields {
+  .authField {
+    float: left;
+    width: 33.3333333333%;
+  }
+}
+
+.field {
+  border: 2px rgba(black,0.12) solid;
+  display: block;
+  padding: 8px 2px;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  &:focus {
+    outline: 0;
+    background-color: #F4F4F4;
+  }
+}
+
+.authWrapper {
+  width: 520px;
+  margin: auto;
+  padding-top: 50px;
+  .authLogo {
+    text-align: center;
+    @include tr(.2s);
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+  .authBox {
+    padding: 15px;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 2px rgba(black, 0.05);
+    .authBigButton {
+      display: block;
+      border-radius: 8px;
+      padding: 8px 0px;
+      text-align: center;
+      background-color: #786f6d;
+      color: #fff;
+      cursor: pointer;
+      @include tr(.2s);
+      margin-bottom: 10px;
+      &:hover {
+        background-color: darken(#786f6d, 7);
+      }
+    }
+  }
+  .authBoxFooter {
+    text-align: center;
+    color: rgba(#fff, 0.9);
+    margin-top: 6px;
+    font-size: 13px;
+    font-style: italic;
+  }
+}
+
+.button {
+  border: none;
+  display: inline-block;
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-align: center;
+  background-color: #786f6d;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  @include tr(.2s);
+  margin-bottom: 10px;
+  &:hover {
+    background-color: darken(#786f6d, 7);
+  }
+  &.authButton {
+    margin-bottom: 0;
+    &:hover {
+      background-color: darken(#786f6d, 7);
+    }
+  }
+}
+
+.siteWrapper {
+  width: 1020px;
+  margin: auto;
+  .siteLogo {
+    text-align: center;
+    img {
+      @include tr(.2s);
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  
+  .siteBox {
+    //overflow: hidden;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 0 40px 6px rgba(black, 0.2);
+    $siteBoxTopHeight: 40px;
+    .siteBoxTop {
+      background-color: #fff;
+      border-radius: 8px 8px 0 0;
+      height: $siteBoxTopHeight;
+      .siteBoxPseudo {
+        height: $siteBoxTopHeight;
+        line-height: $siteBoxTopHeight;
+        padding-left: 20px;
+        font-size: 24px;
+        font-weight: 500;
+        color: rgba(black, 0.4);
+        float: left;
+      }
+      .siteBoxTopMenu {
+        float: right;
+        height: $siteBoxTopHeight;
+        ul {
+          list-style: none;
+          height: inherit;
+          li {
+            height: inherit;
+            cursor: pointer;
+            position: relative;
+            float: left;
+            padding: 0 10px;
+            width: 94px;
+            @include tr(.15s);
+            background: none;
+            &:hover {
+              background-color: rgba(0,0,0,0.04);
+              img {
+                top: -40px;
+              }
+            }
+            img {
+              top: -30px;
+              left: 14px;
+              position: absolute;
+              @include tr(.15s);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.gardenWrapper {
+  width: 100%;
+  position: relative;
+  border-left: 20px white solid;
+  border-right: 20px white solid;
+  height: 500px;
+  .gardenLayers {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    .gardenItems {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 400px;
+      width: 100%;
+      overflow: hidden;
+      .animal {
+        position: absolute;
+        &.selected {
+          border: 4px #fff solid;
+          border-radius: 6px;
+          &:hover {
+            border: 4px #fff solid;
+            border-radius: 6px;
+          }
+          .animalOptions {
+            display: inline-block;
+          }
+        }
+        .animalOptions {
+          display: none;
+          position: absolute;
+          left: -30px;
+          li {
+            display: block;
+            background-color: #fff;
+            padding: 5px 6px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-bottom: 3px;
+            @include tr(.1s);
+            &:hover {
+              background-color: darken(#fff, 8);
+            }
+          }
+        }
+        &:hover {
+          border: 1px #fff solid;
+          border-radius: 6px;
+        }
+      }
+      .gardenItemsBack {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 0;
+      }
+    }
+  }
+}
+
+.gardenBottom {
+  background-color: #fff;
+  border-radius: 0 0 8px 8px;
+  height: 50px;
+  ul {
+    list-style: none;
+    height: inherit;
+    padding-left: 20px;
+    position: relative;
+    z-index: 9999999;
+    li {
+      height: inherit;
+      cursor: pointer;
+      position: relative;
+      float: left;
+      padding: 0 10px;
+      width: 94px;
+      @include tr(.15s);
+      background: none;
+      &:hover {
+        background-color: rgba(0,0,0,0.04);
+        img {
+          top: -30px;
+        }
+      }
+      img {
+        top: -20px;
+        left: 14px;
+        position: absolute;
+        @include tr(.15s);
+      }
+    }
+  }
+}
+
+.animalInfos {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 50;
+  .statButton {
+    padding: 6px 8px;
+    background-color: #D4D4D4;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 4;
+    display: inline-block;
+    top: 7px;
+    right: 7px;
+    overflow: hidden;
+    color: #fff;
+    font-size: 11px;
+    cursor: pointer;
+    @include tr(.2s);
+    &:hover {
+      background-color: #3b3b3b;
+    }
+    i {
+      float: left;
+    }
+  }
+  .animalActions {
+    position: relative;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    border: 4px #eee solid;
+    float: left;
+    overflow: hidden;
+    z-index: 2;
+    .animalInfosName {
+      font-size: 18px;
+      margin-bottom: 5px;
+      text-align: center;
+      font-weight: 300;
+    }
+    .animalInfosButtons {
+      .animalAction {
+        display: inline-block;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background-color: #D5D5D5;
+        float: left;
+        cursor: pointer;
+        color: #fff;
+        margin-right: 3px;
+        @include tr(.2s);
+        &.animalActionEat {
+          background-color: #81a04f;
+          &:hover {
+            background-color: darken(#81a04f,6);
+          }
+        }
+        &.animalActionPlay {
+          background-color: #e25d67;
+          &:hover {
+            background-color: darken(#e25d67,6);
+          }
+        }
+        &.animalActionTraining {
+          background-color: #8e8d4f;
+          &:hover {
+            background-color: darken(#8e8d4f,6);
+          }
+        }
+        &.animalActionCaress {
+          background-color: #4f8e65;
+          &:hover {
+            background-color: darken(#4f8e65,6);
+          }
+        }
+        &.animalActionHeal {
+          background-color: #4f718e;
+          &:hover {
+            background-color: darken(#4f718e,6);
+          }
+        }
+        &.animalActionClean {
+          background-color: #694f8e;
+          &:hover {
+            background-color: darken(#694f8e,6);
+          }
+        }
+      }
+    }
+  }
+  .animalStats {
+    position: absolute;
+    background-color: #fff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 4px #eee solid;
+    z-index: 1;
+    width: 220px;
+    left: 260px;
+    padding-left: 15px;
+    display: none;
+    height: 92px;
+    .stat {
+      .statTitle {
+        font-size: 13px;
+        font-weight: 300;
+      }
+      .statProgress {
+        width: 100%;
+        margin: auto;
+        height: 8px;
+        border-radius: 30px;
+        background-color: #eee;
+        overflow: hidden;
+        .statBar {
+          height: 8px;
+          background-color: #A35153;
+          background-size: 30px 30px;
+        }
+      }
+    }
+  }
+}
+
+// To extend
+.actionButton {
+  padding: 10px 24px;
+  border-radius: 6px;
+  color: #fff;
+      display: inline-block;
+      cursor: pointer;
+      box-shadow: inset 0px -20px 0px 0px rgba(0,0,0,0.12);
+      @include tr(.15s);
+}
+
+.box {
+  position: absolute;
+  width: 940px;
+  height: 460px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin: auto;
+  z-index: 9999;
+  margin-top: 20px;
+  margin-left: 20px;
+  border: 5px #ddd solid;
+  &#boxClean {
+    border-color: #9ab8dd;
+  }
+  .boxClose {
+    position: absolute;
+    z-index: 999;
+    background-color: #eee;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    right: -20px;
+    top: -20px;
+    text-align: center;
+    line-height: 37px;
+    border: 4px darken(#ddd, 5) solid;
+    font-size: 40px;
+    cursor: pointer;
+    @include tr(.2s);
+    &:hover {
+      background-color: darken(#eee, 10);
+    }
+  }
+  .bathroom {
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    position: absolute;
+    background-image: url(../images/bathroom_background.png?);
+    background-position: center;
+    .bathroomAnimal {
+      float: left;
+      bottom: 138px;
+      right: 330px;
+      position: absolute;
+    }
+    .bathroomButton {
+      background-color: #aac1db;
+      top: 260px;
+      left: 120px;
+      position: absolute;
+      border: 4px #4a6584 solid;
+      @extend .actionButton;
+      &:hover {
+        background-color: darken(#aac1db, 10);
+      }
+    }
+  }
+  .clean {
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    position: absolute;
+    background-image: url(../images/bathroom_process_background.png?);
+    background-position: center;
+    .cleanTub {
+      position: absolute;
+      z-index: 3;
+      top: 150px;
+      left: 300px;
+      width: 325px;
+      height: 151px;
+      background-image: url(../images/bathroom_bathtub.png?);
+    }
+    .cleanBubbles {
+      position: absolute;
+      z-index: 1;
+      top: 20px;
+      left: 320px;
+      width: 291px;
+      height: 134px;
+      background-image: url(../images/bathroom_bubbles.png?);
+    }
+    .cleanSponge {
+      position: absolute;
+      z-index: 5;
+      width: 32px;
+      height: 59px;
+      background-image: url(../images/bathroom_sponge.png?);
+    }
+    .cleanAnimalContent {
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      z-index: 2;
+      overflow: hidden;
+      height: 300px;
+      .cleanAnimal {
+        position: relative;
+        top: 40px;
+        z-index: 2;
+        display: inline-block;
+      }
+    }
+    .cleanTiming {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      .cleanProgress {
+        width: 95%;
+        margin: auto;
+        height: 40px;
+        border-radius: 30px;
+        background-color: #fff;
+        border: 3px #0076a2 solid;
+        overflow: hidden;
+        .cleanBar {
+          height: 40px;
+          background-color: #009dd8;
+          background-image: linear-gradient(-45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+          background-size: 30px 30px;
+        }
+      }
+    }
+  }
+  .finishClean {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: url(../images/bathroom_finish_background.png);
+    .finishCleanAnimal {
+      float: left;
+      bottom: 138px;
+      right: 330px;
+      position: absolute;
+    }
+    .finishCleanBravo {
+      display: inline-block;
+      top: 70px;
+      position: absolute;
+      left: 50px;
+    }
+    .finishCleanText {
+      display: inline-block;
+      top: 180px;
+      position: absolute;
+      left: 60px;
+      font-size: 34px;
+      font-weight: 600;
+      color: #4a6584;
+      text-shadow: 0px 2px 7px rgba(0,0,0,0.3);
+      z-index: 9;
+    }
+  }
+}
+
+.moneyDisplay {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-block;
+  img {
+    vertical-align: middle;
+  }
+  .moneyClass {
+    font-size: 28px;
+    font-weight: 300;
+    color: #38454f;
+    padding: 2px 5px;
+    border-radius: 6px;
+    background-color: #fff;
+    margin-bottom: 4px;
+    display: inline-block;
+    &.money {
+      border: 3px #eee solid;
+    }
+    &.diamond {
+      border: 3px #eee solid;
+    }
+  }
+}
+
+.infoContent {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  z-index: 9999999999;
+  padding-top: 5px;
+  .infoBox {
+    padding: 10px 15px;
+    background-color: #fff;;
+    text-align: center;
+    width: 350px;
+    margin: auto;
+    font-size: 15px;
+    text-shadow: 0px 0.5px 0px rgba(0, 0, 0, 0.4);
+    color: #808080;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.6);
+    border: 3px #eee solid;
+    img {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+  }
+}
+
+@keyframes inventoryAnim {
+  0% {
+    bottom: -300px;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+
+.inventory {
+  position: absolute;
+  display: inline-block;
+  height: 250px;
+  width: 700px;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 99999;
+  border-color: #eee;
+  border-style: solid;
+  border-top-width: 4px;
+  border-right-width: 4px;
+  border-bottom-width: 0;
+  border-left-width: 0;
+  border-top-right-radius: 5px;
+  display: none;
+  animation-name: inventoryAnim;
+  animation-duration: .2s;
+  @include tr(.2s);
+  &.opened {
+    display: block;
+  }
+  .inventoryMenu {
+    height: 35px;
+    width: 100%;
+    background-color: #eee;
+    list-style: none;
+    li {
+      float: left;
+      height: 35px;
+      line-height: 35px;
+      padding: 0 15px;
+      color: #6F6F6F;
+      cursor: pointer;
+      @include tr(.15s);
+      &.selected {
+        background-color: #fff;
+        &:hover {
+          background-color: #fff;
+        }
+      }
+      background-color: #e0dede;
+      &:hover {
+        background-color: darken(#e0dede, 8);
+      }
+    }
+  }
+  .inventoryContent {
+    width: 100%;
+    height: 100%;
+    max-height: calc(100% - 35px);
+    overflow: hidden;
+    .inventoryPart {
+      height: 100%;
+      padding-top: 10px;
+      .inventoryPartContent {
+        padding-right: 8px;
+        height: 100%;
+        .inventoryInfo {
+          width: 100%;
+          height: 100%;
+          line-height: 210px;
+          text-align: center;
+          font-size: 16px;
+          color: rgba(black,0.4);
+        }
+        .invElement {
+          width: 14.2857142857%;
+          float: left;
+          height: 70px;
+          padding: 0 10px;
+          margin-bottom: 10px;
+          .invElementContent {
+            background-color: #eee;
+            height: 100%;
+            text-align: center;
+            line-height: 6.5;
+            border-radius: 8px;
+            position: relative;
+            cursor: pointer;
+            @include tr(.15s);
+            &:hover {
+              background-color: darken(#eee,8);
+            }
+            .invElementCount {
+              position: absolute;
+              border-radius: 50%;
+              width: 20px;
+              height: 20px;
+              background-color: #4E4E4E;
+              line-height: 20px;
+              font-size: 13px;
+              color: #fff;
+              right: -7px;
+              top: -7px;
+            }
+            .invElementAdd {
+              position: absolute;
+              font-size: 13px;
+              background-color: #ddd;
+              border-radius: 4px;
+              display: inline-block;
+              padding: 3px 12px;
+              height: 20px;
+              line-height: 1;
+              width: 100%;
+              left: 0;
+              bottom: 0;
+              display: none;
+              @include tr(.15s);
+              &:hover {
+                background-color: darken(#ddd,8);
+              }
+            }
+            .img {
+              width: 50px;
+              height: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
